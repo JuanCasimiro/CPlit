@@ -1,5 +1,5 @@
 """
-URL configuration for cplitProyect project.
+URL configuration for clipProyect project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,9 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from . import views
+from gastosCompartidos import views
 
 urlpatterns = [
+    path('', views.hola, name='hola'),
     path('admin/', admin.site.urls),
-    path('hola/', views.index),
+    path('hola/', views.hola, name='hola'),
+    path('newGasto/<int:monto>/', views.newGasto, name='newGasto'),
+    path('newPago/<str:envia>/<str:recibe>/<int:monto>/', views.newPago, name='newPago'),
+    path('addPersona/<str:nombre>/', views.addPersona, name='addPersona'),
+
 ]
