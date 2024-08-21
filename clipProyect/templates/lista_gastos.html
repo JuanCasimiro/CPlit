@@ -1,0 +1,17 @@
+
+{% extends "./layouts/base.html" %}
+
+{% block title %}Formulario{% endblock %}
+
+{% block content %}
+  <h1>Lista de Gastos</h1>
+  <ul>
+    {% for gasto in gastos %}
+      <li>
+        ${{ gasto.total }} | {{ gasto.title }} - {{ gasto.date }}
+        
+      </li>
+    {% endfor %}
+  </ul>
+  <li><a href="{% url 'new_gasto'%}">Nuevo Gasto</a></li>
+{% endblock %}

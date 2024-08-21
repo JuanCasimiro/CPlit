@@ -1,0 +1,16 @@
+{% extends "./layouts/base.html" %}
+
+{% block title %}Usuarios {% endblock %}
+
+{% block content %}
+  <h1>Lista de Usuarios</h1>
+  <ul>
+    {% for user in users %}
+      <li>
+        {{ user.name }} | {{ user.balance }} - {{ user.alias }}
+        
+      </li>
+    {% endfor %}
+  </ul>
+  <li><a href="{% url 'new_user'%}">Nuevo Usuario</a></li>
+{% endblock %}

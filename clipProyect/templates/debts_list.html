@@ -1,0 +1,31 @@
+
+{% extends "./layouts/base.html" %}
+
+{% block title %}Formulario{% endblock %}
+
+{% block content %}
+  <h1>Lista de deudas</h1>
+  <ul>
+    {% for debt in debts %}
+      <li>
+        ${{ debt.total }} | {{ debt.debtor }} debe a {{ debt.creditor }} |{{debt.status}}|
+        <a href="{% url 'pay_debt' debt.id %}" class="marcar-como-pagado">Marcar como Pagado</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  $('.marcar-como-pagado').click(function(e) {
+    e.preventDefault();
+    var $this = $(this);
+    var url = $this.data('url');
+
+    $.post(url, function(data) {
+      // Actualizar el elemento de la lista o mostrar un mensaje de éxito
+      $this.parent().html('Gasto marcado como pagado');
+    });
+  });
+</script>
+{% endblock %}

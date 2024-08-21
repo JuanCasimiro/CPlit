@@ -1,0 +1,37 @@
+{% extends "./layouts/base.html" %}
+
+{% block title %}Formulario{% endblock %}
+
+{% block content %}
+ 
+<h1>Saldos</h1>
+
+<ul>
+  {% for user in users %}
+    <li>
+      ${{ user.name }} | {{ user.balance }}
+    </li>
+  {% endfor %}
+</ul>
+
+<h1>Lista de pagos pendientes</h1>
+<ul>
+  {% for debt in debts %}
+    <li>
+      ${{ debt.total }} | {{ debt.debtor }} debe a {{ debt.creditor }} |{{debt.status}}|
+      <a href="{% url 'pay_debt' debt.id %}" class="marcar-como-pagado">Marcar como Pagado</a>
+    </li>
+  {% endfor %}
+</ul>
+
+<h1>Lista de Gastos</h1>
+  <ul>
+    {% for gasto in gastos %}
+      <li>
+        ${{ gasto.total }} | {{ gasto.title }} - {{ gasto.date }}
+        
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}
